@@ -1,0 +1,56 @@
+#loginform{
+	margin: 0 auto;
+    width: 300px;
+}
+#inputlog{
+	margin: 10px 0;
+	width: 300px;
+}
+#inputpas{
+	margin: 10px auto;
+	width: 100%; 
+}
+#inpas{
+	margin: 10px auto;
+	width: 100%; 
+}
+.textarea textarea{
+	resize: vertical;
+    width: 100%;
+    font-size: 24px;
+    height: 200px;
+	margin: 0px 0px 20px;
+} 
+#btntext1{
+	width: 50%;
+	float:left;
+	border-radius: 5px 0 0 5px;
+} 
+#btntext2{
+	width: 50%;
+	float:left;
+	border-radius: 0 5px 5px 0;
+} 
+#btn1{
+	width: 70%;
+	float:left;
+	border-radius: 5px 0 0 5px;
+    height: 45px;
+    padding: 10px 0 0 10px;
+}
+#btn2{
+	width: 30%;
+	float:left;
+	border-radius: 0 5px 5px 0;
+    height: 45px;
+}
+#score{
+	margin-top: 15px;
+}
+#resultpan{ 
+	padding: 10px;
+	height: 700px;
+}
+#file{
+	float: left;
+}

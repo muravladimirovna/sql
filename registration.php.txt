@@ -1,0 +1,73 @@
+﻿<?php
+error_reporting(-1);
+header('Content-Type: text/html; charset=utf-8');
+?>
+<html>
+<header>
+	<title>Registration</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</header>
+<body>
+	<div id ="header">
+		<div id = "login">
+		<div class = "log">
+		<form name = "reg" action="" method="post">
+					<label>Login: </label>
+				  <input name="login" type="text" size="15" maxlength="15"><br/>
+				  <br/>
+					<label>Password:  </label>
+				  <input name="password" type="password" size="15" maxlength="15"><br/><br/>
+				  <label>Name:  </label>
+				  <input name="name" type="text" size="15" maxlength="15"><br/><br/>
+					<label>Family:  </label>
+				  <input name="family" type="text" size="15" maxlength="15"><br/><br/>
+				  <input type="submit" name="submit" value="Register"><br/><br/>
+				  <a href = "sqlex.php">Back</a>
+				</form>
+		<?php
+		$link = mysql_connect('localhost','root','');
+		mysql_select_db("prov");
+		mysql_set_charset('utf8');
+		$max = mysql_query('select max(id) from users');
+		$id = mysql_result($max,0) + 1;
+		$qers =mysql_query("select login from users where login like 'root'");
+		if(mysql_result($qers,0)==$_POST["login"])
+		{
+			echo "Login is used, try another";
+		}
+		else
+		{
+			if (empty($_POST["login"]) and empty($_POST["password"]) and empty($_POST["name"]) and empty($_POST["family"]))
+			{
+				echo "Input login, password, name and family";
+			}
+			else
+			{
+				if (empty($_POST["password"]))
+				{
+					echo "Input password";
+				}
+				else
+				{
+					if (empty($_POST["name"]) and empty($_POST["family"]))
+					{
+						echo "Input name and family";
+					}
+					else
+					{
+						mysql_query("INSERT INTO users (id,login, password, name, family) values ('".$id."','".$_POST['login']."','".$_POST['password']."','".$_POST['name']."','".$_POST['family']."')");
+					}
+				}
+					
+				
+			}
+		}
+
+		?>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

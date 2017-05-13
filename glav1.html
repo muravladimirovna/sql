@@ -1,0 +1,368 @@
+﻿<html>
+<header>
+	<title>Глава 1</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</header>
+<body>
+<div id ="header">
+		<div id ="menu">
+			<ul class="menu">
+					<li><a href="index.php">Главная</a></li>
+					<li><a href="sod.html">Учебник</a>
+					</li>
+					<li><a href="sqlex.php">Практика</a>
+					</li>
+					<li><a href="Razrab.php">Разработчик</a></li>
+				</ul>
+		</div>
+	</div>
+	<div id ="header">
+	<div style="width:825px;overflow:hidden">
+<table style="margin-top:15px;" cellspacing="0" cellpadding="0" id="fd-table-1">
+        <tbody><tr style="background-repeat: repeat-x;border-bottom:2px solid black;">
+                <td style="width:4px;height:35px;border-bottom:1px solid #aaa;">
+
+                	  </td>
+                <td style=";height:35px;border-bottom:1px solid #aaa;" align="left">
+
+<div >
+       <h3>Язык манипуляции данными в SQL</h3>
+       <h3>Оператор SELECT</h3>
+    </div>
+
+<h1>
+Простой оператор SELECT
+ </h1>
+                        </td>
+                <td style="width:54px;height:35px;border-bottom:1px solid #aaa;vertical-align:bottom">
+
+
+                        </td>
+        </tr>
+        <tr>
+                <td style="width:24px;">
+                        </td>
+                <td valign="top" style="padding-right:15px;" colspan="2">
+
+<div id="content_text">
+<p>Оператор <span style="font-weight: bold;">SELECT</span> осуществляет выборку из базы данных и имеет наиболее сложную структуру среди всех операторов языка SQL. Практически любой пользователь баз данных в состоянии написать простейший оператор <span style="font-weight: bold;">SELECT</span> типа</p><p></p><div id="query_container_1" class="query_container" style="padding:5px;">
+<div style="clear:both"></div>
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> * <span class="kw1">FROM</span> PC;</div></li></ol></pre>
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_1" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT * FROM PC;
+</textarea>
+</div>
+<div style="clear:both"></div>
+<div style="clear:both"></div>
+</div>
+</div>
+</div>
+<p></p><p>который осуществляет выборку всех записей из объекта БД табличного типа с именем РС. При этом столбцы и строки результирующего набора не упорядочены. Чтобы упорядочить поля результирующего набора, их следует перечислить через запятую в нужном порядке после слова SELECT:</p><p></p><div id="query_container_2" class="query_container" style="padding:5px;">
+
+
+
+<div style="clear:both"></div>
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> price, speed, hd, ram, cd, model, code </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC;</div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_2" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT price, speed, hd, ram, cd, model, code 
+FROM PC;
+</textarea>
+</div>
+<div style="clear:both"></div>
+
+
+
+<div style="clear:both"></div>
+
+<div id="_scheme2" style="display:none">
+ 		<img src="/view/gimages/book/computers.gif">
+ 
+</div>
+
+</div>
+</div>
+<p></p><p>Ниже приводится результат выполнения этого запроса.</p><p></p><table style="margin:2px;" id="fd-table-2">
+<tbody><tr>
+<td style="padding-left:20px;">
+<table class="sort  rowstyle-alt no-arrow"><thead><tr>
+<th class="sortable fd-column-0">price</th>
+<th class="sortable fd-column-1">speed</th>
+<th class="sortable fd-column-2">hd</th>
+<th class="sortable fd-column-3">ram</th>
+<th class="sortable fd-column-4">Cd</th>
+<th class="sortable fd-column-5">model</th>
+<th class="sortable fd-column-6">code</th>
+</tr></thead>
+<tbody><tr class="">
+ <td>600    </td> <td>500    </td> <td>5    </td> <td>64    </td> <td>12x    </td> <td>1232    </td> <td>1</td></tr>
+<tr class="alt">
+ <td>850    </td> <td>750    </td> <td>14    </td> <td>128    </td> <td>40x    </td> <td>1121    </td> <td>2</td></tr>
+<tr class="">
+ <td>600    </td> <td>500    </td> <td>5    </td> <td>64    </td> <td>12x    </td> <td>1233    </td> <td>3</td></tr>
+<tr class="alt">
+ <td>850    </td> <td>600    </td> <td>14    </td> <td>128    </td> <td>40x    </td> <td>1121    </td> <td>4</td></tr>
+<tr class="">
+ <td>850    </td> <td>600    </td> <td>8    </td> <td>128    </td> <td>40x    </td> <td>1121    </td> <td>5</td></tr>
+<tr class="alt">
+ <td>950    </td> <td>750    </td> <td>20    </td> <td>128    </td> <td>50x    </td> <td>1233    </td> <td>6</td></tr>
+<tr class="">
+ <td>400    </td> <td>500    </td> <td>10    </td> <td>32    </td> <td>12x    </td> <td>1232    </td> <td>7</td></tr>
+<tr class="alt">
+ <td>350    </td> <td>450    </td> <td>8    </td> <td>64    </td> <td>24x    </td> <td>1232    </td> <td>8</td></tr>
+<tr class="">
+ <td>350    </td> <td>450    </td> <td>10    </td> <td>32    </td> <td>24x    </td> <td>1232    </td> <td>9</td></tr>
+<tr class="alt">
+ <td>350    </td> <td>500    </td> <td>10    </td> <td>32    </td> <td>12x    </td> <td>1260    </td> <td>10</td></tr>
+<tr class="">
+ <td>980    </td> <td>900    </td> <td>40    </td> <td>128    </td> <td>40x    </td> <td>1233    </td> <td>11</td></tr>
+</tbody></table>
+</td></tr></tbody></table><p></p><p>Вертикальную проекцию таблицы РС можно получить, если перечислить только необходимые поля. Например, чтобы получить информацию только о частоте процессора и объеме оперативной памяти компьютеров, следует выполнить запрос:</p><p></p>
+</div>
+<div style="clear:both"></div>
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> speed, ram </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC;</div></li></ol></pre>
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_3" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT speed, ram 
+FROM PC;
+</textarea>
+</div>
+<div style="clear:both"></div>
+
+<div style="clear:both"></div>
+
+</div>
+</div>
+<p></p><p>который вернет следующие данные:</p><p></p><table style="margin:2px;" id="fd-table-4">
+<tbody><tr>
+<td style="padding-left:20px;">
+<table class="sort  rowstyle-alt no-arrow" id="fd-table-5"><thead><tr>
+<th class="sortable fd-column-0">speed</th>
+<th class="sortable fd-column-1">ram</th>
+</tr></thead>
+<tbody><tr class="">
+ <td>500    </td> <td>64</td></tr>
+<tr class="alt">
+ <td>750    </td> <td>128</td></tr>
+<tr class="">
+ <td>500    </td> <td>64</td></tr>
+<tr class="alt">
+ <td>600    </td> <td>128</td></tr>
+<tr class="">
+ <td>600    </td> <td>128</td></tr>
+<tr class="alt">
+ <td>750    </td> <td>128</td></tr>
+<tr class="">
+ <td>500    </td> <td>32</td></tr>
+<tr class="alt">
+ <td>450    </td> <td>64</td></tr>
+<tr class="">
+ <td>450    </td> <td>32</td></tr>
+<tr class="alt">
+ <td>500    </td> <td>32</td></tr>
+<tr class="">
+ <td>900    </td> <td>128</td></tr>
+</tbody></table>
+</td></tr></tbody></table><p></p><p>Следует отметить, что вертикальная выборка может содержать дубликаты строк в том случае, если она не содержит потенциального ключа, однозначно определяющего запись. В таблице РС потенциальным ключом является поле code. Поскольку это поле отсутствует в запросе, в приведенном выше результирующем наборе имеются дубликаты строк (например, строки 1 и 3). Если требуется получить только уникальные строки (скажем, нас интересуют только различные комбинации скорости процессора и объема памяти, а не характеристики всех имеющихся компьютеров), то можно использовать ключевое слово <span style="font-weight: bold;">DISTINCT</span>:</p><p></p><div id="query_container_4" class="query_container" style="padding:5px;">
+
+
+<div style="clear:both"></div>
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> <span class="kw1">DISTINCT</span> speed, ram </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC;</div></li></ol></pre>
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_4" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT DISTINCT speed, ram 
+FROM PC;
+</textarea>
+</div>
+<div style="clear:both"></div>
+
+<div style="clear:both"></div>
+</div>
+</div>
+<p></p><p>что даст следующий результат:</p><p></p><table style="margin:2px;" id="fd-table-6">
+<tbody><tr>
+<td style="padding-left:20px;">
+<table class="sort  rowstyle-alt no-arrow" id="fd-table-7"><thead><tr>
+<th class="sortable fd-column-0">speed</th>
+<th class="sortable fd-column-1">ram</th>
+</tr></thead>
+<tbody><tr class="">
+ <td>450    </td> <td>32</td></tr>
+<tr class="alt">
+ <td>450    </td> <td>64</td></tr>
+<tr class="">
+ <td>500    </td> <td>32</td></tr>
+<tr class="alt">
+ <td>500    </td> <td>64</td></tr>
+<tr class="">
+ <td>600    </td> <td>128</td></tr>
+<tr class="alt">
+ <td>750    </td> <td>128</td></tr>
+<tr class="">
+ <td>900    </td> <td>128</td></tr>
+</tbody></table>
+</td></tr></tbody></table><br><p></p><p>Помимо <span style="font-weight: bold;">DISTINCT</span> может применяться также ключевое слово <span style="font-weight: bold;">ALL</span> (все строки), которое принимается по умолчанию.</p><br>
+
+<div id="content_text">
+
+
+ <p>Чтобы упорядочить строки результирующего набора, можно выполнить сортировку по любому количеству полей, указанных в предложении <span style="font-weight: bold;">SELECT</span>. Для этого используется предложение <span style="font-weight: bold;">ORDER BY</span> список полей, являющееся всегда последним предложением в операторе <span style="font-weight: bold;">SELECT</span>. При этом в списке полей могут указываться как имена полей, так и их порядковые позиции в списке предложения <span style="font-weight: bold;">SELECT</span>. Так, если требуется упорядочить результирующий набор по объему оперативной памяти в порядке убывания, можно записать:</p><p></p><div id="query_container_1" class="query_container" style="padding:5px;">
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> <span class="kw1">DISTINCT</span> speed, ram </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC </div></li><li class="li1"><div class="de1"><span class="kw1">ORDER</span> <span class="kw1">BY</span> ram <span class="kw1">DESC</span>;</div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_1" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT DISTINCT speed, ram 
+FROM PC 
+ORDER BY ram DESC;
+</textarea>
+</div>
+</div>
+</div>
+<p></p><p>или</p><p></p><div id="query_container_2" class="query_container" style="padding:5px;">
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> <span class="kw1">DISTINCT</span> speed, ram </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC </div></li><li class="li1"><div class="de1"><span class="kw1">ORDER</span> <span class="kw1">BY</span> <span class="nu0">2</span> <span class="kw1">DESC</span>;</div></li></ol></pre>
+
+<div id="_sql2" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:center;margin-bottom:0;padding-bottom:0;">
+</div>
+
+<div id="_console2" class="console_resizable" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:left;margin-bottom:0;padding-bottom:0;">
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_2" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT DISTINCT speed, ram 
+FROM PC 
+ORDER BY 2 DESC;
+</textarea>
+</div>
+</div>
+</div>
+<p></p><p>Результат, приведенный ниже, будет, естественно, одним и тем же.</p><p></p><table style="margin:2px;" id="fd-table-2">
+<tbody><tr>
+<td style="padding-left:20px;">
+<table class="sort  rowstyle-alt no-arrow" id="fd-table-3"><thead><tr>
+<th class="sortable fd-column-0">speed</th>
+<th class="sortable fd-column-1">ram</th>
+</tr></thead>
+<tbody><tr class="">
+ <td>600 </td> <td>128</td></tr>
+<tr class="alt">
+ <td>750 </td> <td>128</td></tr>
+<tr class="">
+ <td>900 </td> <td>128</td></tr>
+<tr class="alt">
+ <td>450 </td> <td>64</td></tr>
+<tr class="">
+ <td>500 </td> <td>64</td></tr>
+<tr class="alt">
+ <td>450 </td> <td>32</td></tr>
+<tr class="">
+ <td>500 </td> <td>32</td></tr>
+</tbody></table>
+</td></tr></tbody></table><p></p><p>Сортировку можно проводить по возрастанию (параметр <span style="font-weight: bold;">ASC</span> принимается по умолчанию) или по убыванию (параметр <span style="font-weight: bold;">DESC</span>).</p><p></p><div class="text_advise">
+<b>Примечание:</b>
+<p>Не рекомендуется в приложениях использовать запросы с сортировкой по номерам столбцов. Это связано с тем, что со временем структура таблицы может измениться, например, в результате добавления/удаления столбцов. Как следствие, запрос типа</p>
+</div><p></p><p></p><div id="query_container_3" class="query_container" style="padding:5px;">
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> *</div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC</div></li><li class="li1"><div class="de1"><span class="kw1">ORDER</span> <span class="kw1">BY</span> <span class="nu0">3</span>;</div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_3" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT *
+FROM PC
+ORDER BY 3;
+</textarea>
+</div>
+</div>
+</div>
+<p></p><p>может давать совсем другую последовательность или вообще вызывать ошибку, ссылаясь на отсутствующий столбец.</p><p>Сортировка по двум полям</p><p></p><div id="query_container_4" class="query_container" style="padding:5px;">
+
+<div style="clear:both"></div>
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> <span class="kw1">DISTINCT</span> speed, ram </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC </div></li><li class="li1"><div class="de1"><span class="kw1">ORDER</span> <span class="kw1">BY</span> ram <span class="kw1">DESC</span>, speed <span class="kw1">DESC</span>;</div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_4" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT DISTINCT speed, ram 
+FROM PC 
+ORDER BY ram DESC, speed DESC;
+</textarea>
+</div>
+<div id="_consolesql4" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:center;margin-bottom:0;padding-bottom:0;">
+</div>
+
+</div>
+</div>
+<p></p><p>даст следующий результат:</p><p></p><table style="margin:2px;" id="fd-table-4">
+<tbody><tr>
+<td style="padding-left:20px;">
+<table class="sort  rowstyle-alt no-arrow" id="fd-table-5"><thead><tr>
+<th class="sortable fd-column-0">speed</th>
+<th class="sortable fd-column-1">ram</th>
+</tr></thead>
+<tbody><tr class="">
+ <td>900 </td> <td>128</td></tr>
+<tr class="alt">
+ <td>750 </td> <td>128</td></tr>
+<tr class="">
+ <td>600 </td> <td>128</td></tr>
+<tr class="alt">
+ <td>500 </td> <td>64</td></tr>
+<tr class="">
+ <td>450</td> <td>64</td></tr>
+<tr class="alt">
+ <td>500 </td> <td>32</td></tr>
+<tr class="">
+ <td>450 </td> <td>32</td></tr>
+</tbody></table>
+</td></tr></tbody></table><p></p><p>Горизонтальную выборку реализует предложение <span style="font-weight: bold;">WHERE</span> предикат, которое записывается после предложения <span style="font-weight: bold;">FROM</span>. При этом в результирующий набор попадут только те строки из источника записей, для каждой из которых значение предиката равно <span style="font-weight: bold;">TRUE</span>. То есть предикат проверяется для каждой записи. Например, запрос «получить информацию о частоте процессора и объеме оперативной памяти для компьютеров с ценой ниже $500» можно сформулировать следующим образом:</p><p></p><div id="query_container_5" class="query_container" style="padding:5px;">
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> <span class="kw1">DISTINCT</span> speed, ram </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC </div></li><li class="li1"><div class="de1"><span class="kw1">WHERE</span> price &lt; <span class="nu0">500</span> </div></li><li class="li1"><div class="de1"><span class="kw1">ORDER</span> <span class="kw1">BY</span> <span class="nu0">2</span> <span class="kw1">DESC</span>;</div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_5" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT DISTINCT speed, ram 
+FROM PC 
+WHERE price &lt; 500 
+ORDER BY 2 DESC;
+</textarea>
+</div>
+</div>
+</div>
+<p></p><p></p><table style="margin:2px;" id="fd-table-6">
+<tbody><tr>
+<td style="padding-left:20px;">
+<table class="sort  rowstyle-alt no-arrow" id="fd-table-7"><thead><tr>
+<th class="sortable fd-column-0">speed</th>
+<th class="sortable fd-column-1">Ram</th>
+</tr></thead>
+<tbody><tr class="">
+ <td>450 </td> <td>64</td></tr>
+<tr class="alt">
+ <td>450 </td> <td>32</td></tr>
+<tr class="">
+ <td>500 </td> <td>32</td></tr>
+</tbody></table>
+</td></tr></tbody></table><p></p><p>В последнем запросе был применен предикат сравнения с использованием операции сравнения «&lt;» (меньше чем). Кроме этой операции сравнения могут использоваться: «=» (равно), «&gt;» (больше), «&gt;=» (больше или равно), «&lt;=» (меньше или равно) и «&lt;&gt;» (не равно). Выражения в предикатах сравнения могут содержать константы и любые поля из таблиц, указанных в предложении <span style="font-weight: bold;">FROM</span>. Символьные строки и константы типа дата/время записываются в апострофах.</p><p>Примеры простых предикатов сравнения:</p><p></p><table style="margin:2px;" id="fd-table-8">
+<tbody><tr>
+<td style="padding-left:20px;">
+<table class="sort  rowstyle-alt no-arrow" id="fd-table-9"><thead><tr>
+<th class="sortable fd-column-0">предикат</th>
+<th class="sortable fd-column-1">описание</th>
+</tr></thead>
+<tbody><tr class="">
+ <td>price &lt; 1000 </td> <td>Цена меньше 1000</td></tr>
+<tr class="alt">
+ <td>type = ‘laptop’ </td> <td>Типом продукции является портативный компьютер</td></tr>
+<tr class="">
+ <td>cd = ‘24x’ </td> <td>24-скоростной CD-ROM</td></tr>
+<tr class="alt">
+ <td>color &lt;&gt; ’y’ </td> <td>Не цветной принтер</td></tr>
+<tr class="">
+ <td>ram – 128 &gt; 0 </td> <td>Объем оперативной памяти свыше 128 Мбайт</td></tr>
+<tr class="alt">
+ <td>Price &lt;= speed*2 </td> <td>Цена не превышает удвоенной частоты процессора
+</td></tr>
+</tbody></table>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+﻿<html>
+<header>
+	<title>Глава 3</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</header>
+<body>
+<div id ="header">
+		<div id ="menu">
+			<ul class="menu">
+					<li><a href="index.php">Главная</a></li>
+					<li><a href="sod.html">Учебник</a>
+					</li>
+					<li><a href="sqlex.php">Практика</a>
+					</li>
+					<li><a href="Razrab.php">Разработчик</a></li>
+				</ul>
+		</div>
+	</div>
+	<div id ="header">
+		<div style="width:825px;overflow:hidden">
+<table style="margin-top:15px;" cellspacing="0" cellpadding="0" id="fd-table-1">
+        <tbody><tr style="background-repeat: repeat-x;border-bottom:2px solid black;">
+                <td style="width:4px;height:35px;border-bottom:1px solid #aaa;">
+
+                	  </td>
+                <td style="height:35px;border-bottom:1px solid #aaa;" align="left">
+
+<div id="parent_list" >
+       <h3>Язык манипуляции данными в SQL</h3>
+       <h3>Оператор SELECT</h3>
+    </div>
+
+<h1 class="cttl">
+Переименование столбцов и вычисления в результирующем наборе
+ </h1>
+                        </td>
+                <td style="width:54px;height:35px;border-bottom:1px solid #aaa;vertical-align:bottom">
+
+
+                        </td>
+        </tr>
+        <tr>
+                <td style="width:24px;">
+                        </td>
+                <td valign="top" style="padding-right:15px;" colspan="2">
+
+<div id="content_text">
+
+
+ <p>Имена столбцов, указанные в предложении <span style="font-weight: bold;">SELECT</span>, можно переименовать. Это делает результаты более читабельными, поскольку имена полей в таблицах часто сокращают с целью упрощения набора. Ключевое слово AS, используемое для переименования, согласно стандарту можно и опустить, так как оно неявно подразумевается.</p><p>Например, запрос:</p><p></p><div id="query_container_1" class="query_container" style="padding:5px;">
+
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> ram <span class="kw1">AS</span> Mb, hd Gb</div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC</div></li><li class="li1"><div class="de1"><span class="kw1">WHERE</span> cd = <span class="st0">'24x'</span></div></li></ol></pre>
+
+<div id="_sql1" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:center;margin-bottom:0;padding-bottom:0;">
+</div>
+
+<div id="_console1" class="console_resizable" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:left;margin-bottom:0;padding-bottom:0;">
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_1" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT ram AS Mb, hd Gb
+FROM PC
+WHERE cd = '24x'
+</textarea>
+</div>
+</div>
+</div>
+<p></p><p>переименует столбец ram в Mb (мегабайты), а столбец hd в Gb (гигабайты). Этот запрос возвратит объемы оперативной памяти и жесткого диска для тех компьютеров, которые имеют 24-скоростной CD-ROM:</p><p></p><table style="margin:2px;" id="fd-table-2">
+<tbody><tr>
+<td style="padding-left:20px;">
+<table class="sort  rowstyle-alt no-arrow" id="fd-table-3"><thead><tr>
+<th class="sortable fd-column-0">Mb</a></th>
+<th class="sortable fd-column-1">Gb</a></th>
+</tr></thead>
+<tbody><tr class="">
+ <td>64    </td> <td>8</td></tr>
+<tr class="alt">
+ <td>32    </td> <td>10</td></tr>
+</tbody></table>
+</td></tr></tbody></table><p></p><p>Переименование особенно желательно при использовании в предложении <span style="font-weight: bold;">SELECT </span>выражений для вычисления значения. Эти выражения позволяют получать данные, которые не находятся непосредственно в таблицах. Если выражение содержит имена столбцов таблицы, указанной в предложении <span style="font-weight: bold;">FROM</span>, то выражение подсчитывается для каждой строки выходных данных. Так, например, чтобы вывести объем оперативной памяти в килобайтах, можно написать:</p><p></p><div id="query_container_2" class="query_container" style="padding:5px;">
+
+<div>
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> ram*<span class="nu0">1024</span> <span class="kw1">AS</span> Kb, hd Gb</div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC</div></li><li class="li1"><div class="de1"><span class="kw1">WHERE</span> cd = <span class="st0">'24x'</span></div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_2" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT ram*1024 AS Kb, hd Gb
+FROM PC
+WHERE cd = '24x'
+</textarea>
+</div>
+
+</div>
+</div>
+<p></p><p>Теперь будет получен следующий результат:</p><p></p><table style="margin:2px;" id="fd-table-4">
+<tbody><tr>
+<td style="padding-left:20px;">
+<table class="sort  rowstyle-alt no-arrow" id="fd-table-5"><thead><tr>
+<th class="sortable fd-column-0">Kb</th>
+<th class="sortable fd-column-1">Gb</th>
+</tr></thead>
+<tbody><tr class="">
+ <td>65536   </td> <td> 8</td></tr>
+<tr class="alt">
+ <td>32768    </td> <td>10</td></tr>
+</tbody></table>
+</td></tr></tbody></table><p></p><p>Иногда бывает необходимо выводить поясняющую информацию рядом с соответствующим значением. Это можно сделать, добавив строковое выражение как дополнительный столбец. Например, запрос:</p><p></p><div id="query_container_3" class="query_container" style="padding:5px;">
+
+
+
+
+
+</div>
+
+
+<div>
+
+
+
+
+
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> ram, <span class="st0">'Mb'</span> <span class="kw1">AS</span> ram_units, hd, <span class="st0">'Gb'</span> <span class="kw1">AS</span> hd_units</div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC</div></li><li class="li1"><div class="de1"><span class="kw1">WHERE</span> cd = <span class="st0">'24x'</span></div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_3" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT ram, 'Mb' AS ram_units, hd, 'Gb' AS hd_units
+FROM PC
+WHERE cd = '24x'
+</textarea>
+</div>
+
+</div>
+</div>
+<p></p><p>даст следующий результат:</p><p></p><table style="margin:2px;" id="fd-table-6">
+<tbody><tr>
+<td style="padding-left:20px;">
+<table class="sort  rowstyle-alt no-arrow" id="fd-table-7"><thead><tr>
+<th class="sortable fd-column-0">ram</th>
+<th class="sortable fd-column-1">ram_units</th>
+<th class="sortable fd-column-2">hd</th>
+<th class="sortable fd-column-3">hd_units</th>
+</tr></thead>
+<tbody><tr class="">
+ <td>64    </td> <td>Mb    </td> <td>8   </td> <td> Gb</td></tr>
+<tr class="alt">
+ <td>32    </td> <td>Mb   </td> <td> 10    </td> <td>Gb</td></tr>
+</tbody></table>
+</td></tr></tbody></table><p></p><p>Если же явно не указать имя для выражения, то будет принят способ именования по умолчанию, который зависит от используемой СУБД. Так, в MS Access будут использованы имена типа выражение1 и т. д., а выходной столбец в MS ;Cистема управления реляционными базами данных (СУБД), разработанная корпорацией Microsoft.</span><span></span>;Язык структурированных запросов) — универсальный компьютерный язык, применяемый для создания, модификации и управления данными в реляционных базах данных.
+</span><span>SQL</span></a> Server вообще не будет иметь заголовка.</p>
+
+</div>
+                        </td>
+                <td style="width:54px;height:35px;border-bottom:1px solid #aaa;vertical-align:bottom">
+
+
+                        </td>
+        </tr>
+        <tr>
+                <td style="width:24px;">
+                        </td>
+                <td valign="top" style="padding-right:15px;" colspan="2">
+
+<div id="content_text">
+
+
+ <p>Согласно стандарту могут использоваться имена с ограничителями (delimited identifier), при этом в качестве ограничителя применяется символ двойной кавычки ("). Такой прием допускает присутствие в именах специальных символов и зарезервированных слов. Например, запрос</p><p></p><div id="query_container_1" class="query_container" style="padding:5px;">
+
+
+
+
+
+</div>
+
+
+<div>
+
+
+
+
+
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> <span class="st0">'SELECT'</span> <span class="st0">"SELECT"</span></div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_1" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT 'SELECT' "SELECT"
+</textarea>
+</div>
+</div>
+</div>
+выведет значение выражения (в данном случае символьную константу 'SELECT') в столбце с именем SELECT. Т.е. мы используем зарезервированное слово в качестве имени столбца. Без этого компилятор (SQL Server) не сможет корректно выполнить разбор подобного запроса<p></p><p></p><div id="query_container_2" class="query_container" style="padding:5px;">
+
+
+
+
+
+</div>
+
+
+<div>
+
+
+
+
+
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> <span class="st0">'SELECT'</span> <span class="kw1">SELECT</span></div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_2" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT 'SELECT' SELECT
+</textarea>
+</div>
+
+</div>
+</div>
+и выдаст такую ошибку:<p></p><p></p><div class="text_error">
+<p><i>Incorrect syntax near 'SELECT'. </i></p>
+</div>(некорректный синтаксис возле 'SELECT')<p></p><p>Помимо стандартного ограничителя, различные СУБД допускают использование своих собственных. Например, в Cистема управления реляционными базами данных (СУБД), разработанная корпорацией Microsoft.</span><span></span>&nbsp;Язык структурированных запросов) — универсальный компьютерный язык, применяемый для создания, модификации и управления данными в реляционных базах данных.
+</span><span>SQL</span></a> Server наш запрос можно написать так:</p><p></p><div id="query_container_3" class="query_container" style="padding:5px;">
+
+
+
+
+
+</div>
+
+
+<div>
+
+
+
+
+
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> <span class="st0">'SELECT'</span> <span class="br0">[</span><span class="kw1">SELECT</span><span class="br0">]</span></div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_3" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">SELECT 'SELECT' [SELECT]
+</textarea>
+</div>
+
+</div>
+</div>
+<p></p><p>В то же время, стандартный ограничитель используется параллельно, но не везде он принят настройками по умолчанию. В MSSQL настройку, отвечающую за имена с ограничителями, можно изменить с помощью оператора</p><p></p><div style="padding:5px;">
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SET</span> QUOTED_IDENTIFIER <span class="br0">{</span> <span class="kw1">ON</span> | OFF <span class="br0">}</span></div></li></ol></pre>
+
+</div>При этом стандартное поведение (ON) принято по умолчанию.<p></p>
+
+
+</div>
+
+	</div>
+</body>
+</html>

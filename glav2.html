@@ -1,0 +1,153 @@
+﻿<html>
+<header>
+	<title>Глава 2</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</header>
+<body>
+<div id ="header">
+		<div id ="menu">
+			<ul class="menu">
+					<li><a href="index.php">Главная</a></li>
+					<li><a href="sod.html">Учебник</a>
+					</li>
+					<li><a href="sqlex.php">Практика</a>
+					</li>
+					<li><a href="Razrab.php">Разработчик</a></li>
+				</ul>
+		</div>
+	</div>
+	<div id ="header">
+		<div style="width:825px;overflow:hidden">
+<table style="margin-top:15px;" cellspacing="0" cellpadding="0" id="fd-table-1">
+        <tbody><tr style="background-repeat: repeat-x;border-bottom:2px solid black;">
+                <td style="width:4px;height:35px;border-bottom:1px solid #aaa;">
+
+                	  </td>
+                <td style="height:35px;border-bottom:1px solid #aaa;" align="left">
+
+<div id="parent_list">
+       <h3>Язык манипуляции данными в SQL</h3>
+       <h3>Оператор SELECT</h3>
+    </div>
+
+<h1>
+Сортировка по дням рождения
+</h1>
+                        </td>
+                <td style="width:54px;height:35px;border-bottom:1px solid #aaa;vertical-align:bottom">
+
+
+                        </td>
+        </tr>
+        <tr>
+                <td style="width:24px;">
+                        </td>
+                <td valign="top" style="padding-right:15px;" colspan="2">
+
+<div id="content_text">
+
+
+ <p>Такая сортировка может потребоваться, например, для установления очередности празднования дней рождения сотрудников. Особенность подобной сортировки заключается в том, что год не учитывается вовсе, а даты упорядочиваются сначала по месяцу, а потом по дню месяца.</p><p>Возьмём в качестве примера таблицу Battles, а именно, столбец <span style="font-style: italic;">date</span>. Ясно, что сортировка просто по дате (<span style="font-style: italic;">date</span>) не даст желаемого результата из-за года (так, например, 15-е ноября будет предшествовать 20-му октября):</p><p></p><div id="query_container_1" class="query_container" style="padding:5px;">
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> date</div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> Battles </div></li><li class="li1"><div class="de1"><span class="kw1">ORDER</span> <span class="kw1">BY</span> date;</div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_1" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">select date
+from Battles 
+order by date;
+</textarea>
+</div>
+
+</div>
+</div>
+<p></p><p></p><table style="margin:2px;" id="fd-table-2">
+<tbody><tr>
+<td style="padding-left:20px;">
+<table class="sort  rowstyle-alt no-arrow" id="fd-table-3"><thead><tr>
+<th class="sortable fd-column-0">date</th>
+</tr></thead>
+<tbody><tr class="">
+ <td>1941-05-25 00:00:00.000</td></tr>
+<tr class="alt">
+ <td>1942-11-15 00:00:00.000</td></tr>
+<tr class="">
+ <td>1943-12-26 00:00:00.000</td></tr>
+<tr class="alt">
+ <td>1944-10-25 00:00:00.000</td></tr>
+<tr class="">
+ <td>1962-10-20 00:00:00.000</td></tr>
+<tr class="alt">
+ <td>1962-10-25 00:00:00.000</td></tr>
+</tbody></table>
+</td></tr></tbody></table><p></p><p>Для выполнения требуемой сортировки можно предложить два варианта (<span style="font-weight: bold;">SQL Server</span>). </p><h4>1. Использование функции <span style="font-weight: bold;">CONVERT;</span></h4><p>При этом способе мы преобразуем дату к текстовому представлению в формате "mm-dd"</p><p></p><div id="query_container_2" class="query_container" style="padding:5px;">
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> <span class="kw1">CONVERT</span><span class="br0">(</span>CHAR<span class="br0">(</span><span class="nu0">5</span><span class="br0">)</span>, date, <span class="nu0">110</span><span class="br0">)</span> <span class="st0">"mm-dd"</span> </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> Battles;</div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_2" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">select convert(CHAR(5), date, 110) "mm-dd" 
+from Battles;
+</textarea>
+</div>
+
+</div>
+</div>
+по которому и выполним сортировку:<p></p><p></p><div id="query_container_3" class="query_container" style="padding:5px;">
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> date </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> Battles </div></li><li class="li1"><div class="de1"><span class="kw1">ORDER</span> <span class="kw1">BY</span> <span class="kw1">CONVERT</span><span class="br0">(</span>CHAR<span class="br0">(</span><span class="nu0">5</span><span class="br0">)</span>,date,<span class="nu0">110</span><span class="br0">)</span>;</div></li></ol></pre>
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_3" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">select date 
+from Battles 
+order by convert(CHAR(5),date,110);
+</textarea>
+</div>
+</div>
+</div>
+<p></p><p></p><table style="margin:2px;" id="fd-table-4">
+<tbody><tr>
+<td style="padding-left:20px;">
+<table class="sort  rowstyle-alt no-arrow" id="fd-table-5"><thead><tr>
+<th class="sortable fd-column-0">date</th>
+</tr></thead>
+<tbody><tr class="">
+ <td>1941-05-25 00:00:00.000</td></tr>
+<tr class="alt">
+ <td>1962-10-20 00:00:00.000</td></tr>
+<tr class="">
+ <td>1962-10-25 00:00:00.000</td></tr>
+<tr class="alt">
+ <td>1944-10-25 00:00:00.000</td></tr>
+<tr class="">
+ <td>1942-11-15 00:00:00.000</td></tr>
+<tr class="alt">
+ <td>1943-12-26 00:00:00.000</td></tr>
+</tbody></table>
+</td></tr></tbody></table><p></p><p><br></p><h4>2. Использование функций MONTH и DAY</h4><p>Здесь мы используем встроенные функции, которые возвращают компоненты даты - месяц (<span style="font-weight: bold;">MONTH</span>) и день (<span style="font-weight: bold;">DAY</span>) соответственно. По этим компонентам выполним сортировку:</p><p></p><div id="query_container_4" class="query_container" style="padding:5px;">
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> date </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> Battles </div></li><li class="li1"><div class="de1"><span class="kw1">ORDER</span> <span class="kw1">BY</span> MONTH<span class="br0">(</span>date<span class="br0">)</span>, DAY<span class="br0">(</span>date<span class="br0">)</span>;</div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_4" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">select date 
+from Battles 
+order by MONTH(date), DAY(date);
+</textarea>
+</div>
+</div>
+</div>
+<p></p><p>Что касается производительности, то вы можете выбрать любой вариант, т.к. оптимизатор строит для них идентичные планы.</p><p>В заключение представим последний запрос в более наглядном виде, добавив в него еще и "виновника торжества":</p><p></p><div id="query_container_5" class="query_container" style="padding:5px;">
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> DAY<span class="br0">(</span>date<span class="br0">)</span> BD_day, DATENAME<span class="br0">(</span>mm, date<span class="br0">)</span> BD_month, name </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> Battles </div></li><li class="li1"><div class="de1"><span class="kw1">ORDER</span> <span class="kw1">BY</span> MONTH<span class="br0">(</span>date<span class="br0">)</span>, DAY<span class="br0">(</span>date<span class="br0">)</span>;</div></li></ol></pre>
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_5" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">select DAY(date) BD_day, DATENAME(mm, date) BD_month, name 
+from Battles 
+order by MONTH(date), DAY(date);
+</textarea>
+</div>
+
+
+</div>
+	</div>
+</body>
+</html>

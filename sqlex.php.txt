@@ -1,0 +1,258 @@
+﻿<?php
+    //Стартуем сессии
+ session_start();
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>Test</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	
+</head>
+<body>
+
+	<?php
+	// Проверяем, пусты ли переменные логина и id пользователя
+		if (empty($_SESSION['login']) or empty($_SESSION['id']))
+		{
+	?>
+		 <!--Если пусты, то выводим форму входа.--> 
+		 <div id = "header">
+			<div id = "login">
+				<div class ="log">
+					<form action="proverca.php" method="post">
+						<label>Логин:</label><br/>
+					  <input name="login" type="text" size="15" maxlength="15"><br/>
+						<label>Пароль:</label><br/>
+					  <input name="password" type="password" size="15" maxlength="15"><br/><br/>
+					  <input type="submit" value="Sign In" style = "background-color: rgba(139,0,139, 0.4); color:white; border-color:rgba(139,0,139, 0.2)"><br/><br/>
+					</form>
+					<a href = "registration.php">Registration</a>
+						Welcome <font color="red">guest</font>! <br/>
+				</div>
+			</div>
+		</div>
+	<?php
+		}
+		else  //Иначе. 
+		{
+			 $login=$_SESSION['login'];
+			 
+		 //Подключаемся к базе данных.
+			$dbcon = mysql_connect("localhost", "root", ""); 
+			mysql_select_db("prov", $dbcon);
+			if (!$dbcon)
+			{
+			echo "<p>Произошла ошибка при подсоединении к MySQL!</p>".mysql_error();
+			exit();
+			}
+			else {
+			if (!mysql_select_db("prov", $dbcon))
+			{
+			echo("<p>Выбранной базы данных не существует!</p>");
+			}
+		}
+	//Формирование оператора SQL SELECT 
+	$sqlCart = mysql_query("SELECT login FROM users WHERE login = '$login'", $dbcon);
+	//Цикл по множеству записей и вывод необходимых записей 
+	 while($row = mysql_fetch_array($sqlCart)) 
+	 {
+		//Присваивание записей 
+		$name = $row["login"];
+	  }
+		mysql_close($dbcon);
+		// Если не пусты, то мы выводим ссылку
+		echo "
+			<div id = 'header'>
+				<div id ='login'>
+					<div class ='log'>
+						<font color='white'>Welcome: "."<font color='red'>".$name."</font></font>
+						</br>
+						<a href='viiti.php'>quit</a> 
+					</div>
+				</div>
+			</div>";
+		}
+		?> 
+		<?php
+			if(empty($_SESSION['login']) or empty($_SESSION['id']))
+			{
+				
+			}
+			else
+			{
+		?>
+				<div id = "list">
+					<?php
+					$link = mysql_connect('localhost','root','');
+					mysql_query("SET NAMES cp1251");
+						?>
+					
+					<div id = "forms">
+						<div class = "form1">
+							<form name="sql_form" id="sql_form" action="" method="post">
+								<textarea name="sql" style="resize: none; width: 400px; height: 200px; padding: 10px; background-color: rgba(255,255,255,0.8); border-color:rgb(139,0,139); margin-left:8px"></textarea>
+								<input type="submit" name="submit" style="display: block; width: 100px; padding: 5px; margin-left:8px;margin-top:4px" value="ok" />
+							</form>
+						</div>
+						<div class = "form2">
+							<form name="sql_form" id="sql_form" action="" method="get">
+								<select name="option">
+									<option value = "1">1</option>
+									<option value = "2">2</option>
+									<option value = "3">3</option>
+								</select>
+					
+								<input type="submit" name="send" value="send">   
+							</form>
+							<?
+							$ge = 1;
+							$qe = 'qer1';
+							if (!$_GET["option"])
+							{
+								
+							}
+							else
+							{
+								$ge = $_GET["option"];
+								if ($ge == 1)
+								{
+									$qe = 'qer1';
+								}
+								if ($ge == 2)
+								{
+									$qe = 'qer2';
+								}
+								if ($ge == 3)
+								{
+									$qe = 'qer3';
+								}
+							}
+							mysql_select_db("task");
+								$quest = mysql_query('SELECT task FROM tasks ');
+								echo mysql_result($quest,$ge - 1);
+								$querys = mysql_query('SELECT qer FROM qer');
+						
+							?>
+						</div>
+					</div>					
+					<?
+					echo '<div class = "per" align = "center">';	
+						echo '  Progress: ';
+							mysql_select_db("prov");
+								$vipolnenie = mysql_query("select ".$qe." from users where login ='".$name."'");
+								if (mysql_result($vipolnenie,0) == 'true')
+								{
+									echo 'performed';
+								}
+								else
+								{
+									echo 'not performed'; 
+								}	
+						echo '</div>';
+						echo '<div class = "res">';	
+						echo '<div class = "cor">';							
+					mysql_select_db('Computer');				
+						$str = stripslashes($_POST["sql"]);
+						$qer = mysql_query($str);
+						$qer2 = mysql_query(mysql_result($querys,$ge - 1));
+						$qer3= mysql_query($str);				
+						$res = $_POST["sql"];				
+						if (!$res) {
+							$arResult = 'Неверный запрос: ' . mysql_error();
+						}
+						else
+						{				
+							$count = mysql_num_fields($qer);				
+							$i = false;
+							$bi =false;
+							$pline = mysql_fetch_array($qer2, MYSQL_ASSOC); 
+							$sline = mysql_fetch_array($qer3, MYSQL_ASSOC); 
+							if(mysql_num_rows($qer2)==mysql_num_rows($qer3))
+							{
+								foreach($sline as $col_value)
+							{
+								if ($sline == $pline)
+											{
+												$e = true;
+											}
+											else
+											{
+												$e=false;
+											}
+							}
+							}
+							else
+							{
+								$e = false;
+							}							
+							if ($e == true)
+								{
+									echo '<p align = "center">  Your query is correct </p>';
+									mysql_select_db('prov');
+									$save = mysql_query("update users set ".$qe." = 'true' where login = '".$name."'");
+									$vipolnenie = mysql_query("select ".$qe." from users where login ='".$name."'");
+									mysql_select_db('Computer');
+								}
+								else
+								{
+									echo '<p align = "center"> Your query is incorrect </p>';
+								}
+						
+							echo "<table>\n";
+							echo '<table border="1" align = "left" class = "tas">';
+							while ($line = mysql_fetch_array($qer, MYSQL_ASSOC)) 
+							{	
+								if ($i == false)
+								{
+									for($a = 0; $a<$count; $a++)
+									{
+										echo '<td>'.mysql_field_name($qer,$a).'</td>';
+									}
+									$i=true;
+								}								
+								echo "\t<tr>\n";
+								foreach ($line as $col_value)
+									{										 
+										echo "\t\t<td>$col_value</td>\n";
+									}
+									echo "\t</tr>\n";
+							}
+							echo "</table>\n";
+							$i = true;			
+						}
+					echo '</div>';	
+					?>
+					<?	
+					echo '</br>';
+									$qer4 = mysql_query(mysql_result($querys,$ge - 1));		
+									echo '<table>';
+									echo '<table border="1" align = "right" class = "tas2">';
+									$count2 = mysql_num_fields($qer4);
+									while ($prov = mysql_fetch_array($qer4, MYSQL_ASSOC)) 
+									{	
+										if ($bi == false)
+										{
+											for($b = 0; $b<$count2; $b++)
+											{
+												echo '<td>'.mysql_field_name($qer4,$b).'</td>';
+											}
+											$bi=true;
+										}										
+										echo "\t<tr>";
+										
+										foreach ($prov as $col_value)
+											{
+												echo "\t\t<td>$col_value</td>";
+											}
+											echo "\t</tr>";
+									}
+								?>
+					<?
+			}
+					?>
+					</div>
+				</div>
+</body>
+</html>

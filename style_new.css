@@ -1,0 +1,6 @@
+.selectbtn{
+	display: flex;  
+	width: 300px; 
+	padding: 7px 10px; 
+	color: #aaa;
+}
